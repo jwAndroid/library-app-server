@@ -9,26 +9,28 @@ import com.group.libraryapp.dto.book.request.BookCreateRequest;
 import com.group.libraryapp.dto.book.request.BookLoanRequest;
 import com.group.libraryapp.dto.book.request.BookReturnRequest;
 import com.group.libraryapp.dto.book.response.BookLoanResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class BookService {
     private final BookRepository bookRepository;
     private final UserLoanHistoryRepository userLoanHistoryRepository;
     private final UserRepository userRepository;
 
     // 스프링 빈을 통한 의존성 주입
-    public BookService(BookRepository bookRepository,
-                       UserLoanHistoryRepository userLoanHistoryRepository ,
-                       UserRepository userRepository
-    ) {
-        this.bookRepository = bookRepository;
-        this.userLoanHistoryRepository = userLoanHistoryRepository;
-        this.userRepository = userRepository;
-    }
+//    public BookService(BookRepository bookRepository,
+//                       UserLoanHistoryRepository userLoanHistoryRepository ,
+//                       UserRepository userRepository
+//    ) {
+//        this.bookRepository = bookRepository;
+//        this.userLoanHistoryRepository = userLoanHistoryRepository;
+//        this.userRepository = userRepository;
+//    }
 
     @Transactional
     public void saveBook(BookCreateRequest request) {
