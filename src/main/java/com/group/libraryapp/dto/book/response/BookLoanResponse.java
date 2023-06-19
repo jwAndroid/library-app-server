@@ -2,8 +2,6 @@ package com.group.libraryapp.dto.book.response;
 import com.group.libraryapp.domain.user.User;
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory;
 
-import java.util.List;
-
 public class BookLoanResponse {
     private final Long id;
     private final User user;
