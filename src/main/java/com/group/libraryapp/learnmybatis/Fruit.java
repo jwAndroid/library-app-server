@@ -4,7 +4,6 @@ public class Fruit {
     private Long id;
     private String name;
     private int price;
-
     @Override
     public String toString() {
         return "Fruit{" +
@@ -13,24 +12,19 @@ public class Fruit {
                 ", price=" + price +
                 '}';
     }
-
     public Fruit(Long id, String name, int price) {
         this.id = id;
         this.name = name;
         this.price = price;
     }
-
     protected Fruit() {
     }
-
     public Long getId() {
         return id;
     }
-
     public String getName() {
         return name;
     }
-
     public int getPrice() {
         return price;
     }

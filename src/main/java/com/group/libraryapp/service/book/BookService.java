@@ -1,4 +1,5 @@
 package com.group.libraryapp.service.book;
+
 import com.group.libraryapp.domain.book.Book;
 import com.group.libraryapp.domain.book.BookRepository;
 import com.group.libraryapp.domain.user.User;
@@ -35,12 +36,10 @@ public class BookService {
     public void saveBook(BookCreateRequest request) {
         bookRepository.save(new Book(request));
     }
-
     @Transactional
     public void loanBook(BookLoanRequest request) {
         // 1. 책정보 가져옴
-        Book book = bookRepository.findByName(request.getBookName())
-                .orElseThrow(IllegalArgumentException::new);
+        Book book = bookRepository.findByName(request.getBookName()).orElseThrow(IllegalArgumentException::new);
 
         // 2. 대출기록 정보를 확인해서 대출중인지 확인.
         if (userLoanHistoryRepository.existsByBookNameAndIsReturn(book.getName(), false)) {
@@ -50,7 +49,6 @@ public class BookService {
 
         // 4. 유저 정보를 가져온다.
         User user = userRepository.findByName(request.getUserName()).orElseThrow(IllegalArgumentException::new);
-
         user.loanBook(request.getBookName());
         // 캐스케이드 옵션에 의해서 가능한일이다.
 
@@ -61,9 +59,7 @@ public class BookService {
     @Transactional
     public void returnBook(BookReturnRequest request) {
         // dto 에서 사용자의 이름을 받아 user 찾아주기.
-        User user = userRepository.findByName(request.getUserName())
-                .orElseThrow(IllegalArgumentException::new);
-
+        User user = userRepository.findByName(request.getUserName()).orElseThrow(IllegalArgumentException::new);
         user.returnBook(request.getBookName());
         // User 의 협력관계로 인한 도메인계층의 비니지스로직
 

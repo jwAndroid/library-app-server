@@ -9,17 +9,16 @@ import java.util.List;
 
 @RestController
 public class UserController {
-
    private final UserServiceV2 userServiceV2;
 
    public UserController(UserServiceV2 userServiceV2) {
         this.userServiceV2 = userServiceV2;
-    }
+   }
 
    @PostMapping("/user")
    public void saveUser(@RequestBody UserCreateRequest dto) {
         userServiceV2.saveUser(dto);
-    }
+   }
 
    @GetMapping("/user")
    public List<UserResponse> getUsers() {

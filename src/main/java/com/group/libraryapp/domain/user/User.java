@@ -2,27 +2,27 @@ package com.group.libraryapp.domain.user;
 
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-* User 와 UserLoanHistory 는 서로 OneToMany manyToOne 관계이다.
-*
-* */
-
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
 
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
+
+    @Getter
     @Column(nullable = false, length = 20, name = "name")
     private String name;
+
+    @Getter
     private Integer age;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
@@ -34,18 +34,6 @@ public class User {
         }
         this.name = name;
         this.age = age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public void updateName(String name) {
@@ -67,6 +55,7 @@ public class User {
                 .orElseThrow(IllegalArgumentException::new);
         targetHistory.doReturn();
     }
+
     // this.userLoanHistories 두개가 서로 협력관계 이기때문에 해당하는 리스트가 존재한다.
     // 테이블에 있는 이름과 같은 객체를 찾아낸다.
     // 찾은 객체를 반납처리(isReturn 을 true)한다.

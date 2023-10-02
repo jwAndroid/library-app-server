@@ -1,17 +1,21 @@
 package com.group.libraryapp.domain.user.loanhistory;
 import com.group.libraryapp.domain.user.User;
+import lombok.Getter;
 import javax.persistence.*;
 
 @Entity
 public class UserLoanHistory {
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = null;
 
+    @Getter
     private String bookName;
 
     private boolean isReturn;
 
+    @Getter
     @JoinColumn(nullable = false)
     @ManyToOne
     private User user;
@@ -26,18 +30,6 @@ public class UserLoanHistory {
 
     public void doReturn() {
         this.isReturn = true;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public String getBookName() {
-        return bookName;
     }
 
     public boolean getIsReturn() {
